@@ -20,8 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-// User registration
-Route::post('/register', [UserController::class, 'register']);
 
-// User login
-Route::post('/login', [UserController::class, 'login']);
+Route::group(['prefix' => 'v1', 'namespace' => '\App\Http\Controllers\API'], function () {
+    // User registration
+    Route::post('/register', [UserController::class, 'register']);
+    // User login
+    Route::post('/login', [UserController::class, 'login']);
+});
